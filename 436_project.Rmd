@@ -1,0 +1,49 @@
+---
+title: "436_project"
+author: "Ethan Lewellin, Ashley Gray, Irene Elizabeth \"Lizzi\" Whiting "
+date: "4/6/2022"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+
+library(ggplot2)
+```
+
+```{r Clean data}
+#rename dataframe
+df <- d3
+
+#lapply(df, class)
+
+df[,c("school","reason","Mjob","Fjob","guardian", "higher")] <- list(NULL)
+
+names(df)
+
+df[,c("sex","address","famsize",
+             "Pstatus","Medu","Fedu",
+             "traveltime", "studytime",
+             "schoolsup", "famsup",
+             "paid", "activities",
+             "nursery", "internet", "romantic",
+             "famrel", "freetime", "goout",
+             "Dalc", "Walc", "health")] <-
+  lapply(df[,c("sex","address","famsize",
+             "Pstatus","Medu","Fedu",
+             "traveltime", "studytime",
+             "schoolsup", "famsup",
+             "paid", "activities",
+             "nursery", "internet", "romantic",
+             "famrel", "freetime", "goout",
+             "Dalc", "Walc", "health")], as.factor)
+```
+
+
+```{r Cor}
+#install.packages("GGally")
+library(GGally)
+
+ggpairs(df[,25:ncol(df)])
+```
+
